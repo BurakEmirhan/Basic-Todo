@@ -1,30 +1,8 @@
 <?php
-	$errors = ""; 
-		//databaseye bağlanma yeri
-	$db = mysqli_connect('localhost', 'root', '', 'todo');
-
-	if (isset($_POST['submit'])) {
-		$task = $_POST['task'];
-		if (empty($task)) {
-			$errors = "Burayı doldurmalısın.";
-		}else {
-			mysqli_query($db, "INSERT INTO tasks (task) VALUES ('$task')");
-			header('location: index.php');
-		}
-	}
-
-	// Görev Silme
-
-	if (isset($_GET['del_task'])) {
-		$id = $_GET['del_task'];
-		mysqli_query($db, "DELETE FROM tasks WHERE id=$id");
-		header('location: index.php');
-	}
-
-	$tasks = mysqli_query($db, "SELECT * FROM tasks");
-
-
- ?>
+session_start();
+require_once('./db.php');
+$tasks = mysqli_query($db, "SELECT * FROM tasks");
+?>
 
 <!DOCTYPE html>
 <html>
@@ -39,12 +17,16 @@
 	</div>
 
 	<form method="POST" action="index.php">
-		<?php if (isset($errors)) { ?>
-			<p><?php echo $errors; ?></p>
+		<?php if (isset($_SESSION['error'])) { ?>
+			<p class="danger"><?php echo $_SESSION['error']; ?></p>
+		<?php } ?>
+		
+		<?php if (isset($_SESSION['success'])) { ?>
+			<p class="success"><?php echo $_SESSION['success']; ?></p>
 		<?php } ?>
 
-			<input type="text" name="task" class="task_input">
-			<button type="submit" class="task_btn" name="submit">Görev Ekle</button>
+		<input type="text" name="task" class="task_input">
+		<button type="submit" class="task_btn" name="submit">Görev Ekle</button>
 	</form>
 
 	<table>
