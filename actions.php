@@ -8,6 +8,7 @@
 				unset($_SESSION['error']);
 			}
 			mysqli_query($db, "INSERT INTO tasks (task) VALUES ('$task')");
+			$_SESSION['success'] = 'Görev Başarıyla Eklendi!';
 			header('location: index.php');
 		}
 	}
