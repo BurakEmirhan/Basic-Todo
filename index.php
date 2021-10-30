@@ -16,7 +16,7 @@ $tasks = mysqli_query($db, "SELECT * FROM tasks");
 		<h2>ToDo</h2>
 	</div>
 
-	<form method="POST" action="index.php">
+	<form method="POST" action="actions.php">
 		<?php if (isset($_SESSION['error'])) { ?>
 			<p class="danger"><?php echo $_SESSION['error']; ?></p>
 		<?php } ?>
@@ -43,7 +43,7 @@ $tasks = mysqli_query($db, "SELECT * FROM tasks");
 				<td><?php echo $i; ?></td>
 				<td class="task"><?php echo $row['task']; ?></td>
 				<td class="delete">
-					<a href="index.php?del_task=<?php echo $row['id']; ?>">x</a>
+					<a href="actions.php?del_task=<?php echo $row['id']; ?>">x</a>
 				</td>
 			</tr>
 
