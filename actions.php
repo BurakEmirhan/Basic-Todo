@@ -14,8 +14,8 @@ if (isset($_POST['submit'])) {
 		}
 		mysqli_query($db, "INSERT INTO tasks (task) VALUES ('$task')");
 		$_SESSION['success'] = 'Görev Başarıyla Eklendi!';
-		header('Location: index.php');
 	}
+	header('Location: index.php');
 }
 
 /**
