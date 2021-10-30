@@ -18,7 +18,11 @@ $tasks = mysqli_query($db, "SELECT * FROM tasks");
 
 	<form method="POST" action="index.php">
 		<?php if (isset($_SESSION['error'])) { ?>
-			<p><?php echo $_SESSION['error']; ?></p>
+			<p class="danger"><?php echo $_SESSION['error']; ?></p>
+		<?php } ?>
+		
+		<?php if (isset($_SESSION['success'])) { ?>
+			<p class="success"><?php echo $_SESSION['success']; ?></p>
 		<?php } ?>
 
 		<input type="text" name="task" class="task_input">
