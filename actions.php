@@ -1,11 +1,12 @@
 <?php
-	$errors = "";
-
 	if (isset($_POST['submit'])) {
 		$task = $_POST['task'];
 		if (empty($task)) {
-			$errors = "Burayı doldurmalısın.";
+			$_SESSION['error'] = "Burayı doldurmalısın.";
 		}else {
+			if (isset($_SESSION['error'])) {
+				unset($_SESSION['error']);
+			}
 			mysqli_query($db, "INSERT INTO tasks (task) VALUES ('$task')");
 			header('location: index.php');
 		}
