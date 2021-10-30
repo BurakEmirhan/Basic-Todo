@@ -21,8 +21,13 @@ form {
 	border: 2px solid #6B8E23;
 }
 
-form p {
+.error {
 	color: red;
+	margin: 0px;
+}
+
+.success {
+	color: green;
 	margin: 0px;
 }
 
